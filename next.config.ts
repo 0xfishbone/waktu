@@ -1,16 +1,11 @@
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-  webpack: (config) => {
-    // Ensure single React instance for React Three Fiber
-    // Use path.dirname to get the directory, allowing subpath imports like react/jsx-runtime
-    const path = require('path')
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      'react': path.dirname(require.resolve('react/package.json')),
-      'react-dom': path.dirname(require.resolve('react-dom/package.json')),
-    }
+  // Transpile React Three packages to use our React version
+  // This prevents duplicate React instances without breaking Server Components
+  transpilePackages: ['three', '@react-three/fiber', '@react-three/drei'],
 
+  webpack: (config) => {
     // Handle GLSL/shader files
     config.module.rules.push({
       test: /\.(glsl|vs|fs|vert|frag)$/,
