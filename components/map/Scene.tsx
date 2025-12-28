@@ -11,12 +11,16 @@ export default function Scene() {
   return (
     <div className="w-full h-screen">
       <Canvas
+        style={{ background: '#F5F1E8' }}
         gl={{
           antialias: true,
           alpha: false,
         }}
         dpr={[1, 2]}
         performance={{ min: 0.5 }}
+        onCreated={({ gl }) => {
+          gl.setClearColor('#F5F1E8', 1)
+        }}
       >
         {/* Camera */}
         <PerspectiveCamera
