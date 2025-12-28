@@ -8,6 +8,7 @@ const categories = [
   { id: 'museum', label: 'Museums' },
   { id: 'cultural-center', label: 'Cultural Centers' },
   { id: 'studio', label: 'Studios' },
+  { id: 'landmark', label: 'Landmarks' },
 ]
 
 export default function FilterButtons() {
