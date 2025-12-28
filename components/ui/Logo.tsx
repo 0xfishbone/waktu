@@ -7,7 +7,7 @@ export default function Logo() {
         WAKTU
       </h1>
       <p className="font-body text-sm text-faded-indigo mt-1">
-        Dakar's Art & Culture Map
+        Dakar&apos;s Art & Culture Map
       </p>
     </div>
   )

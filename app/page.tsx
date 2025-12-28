@@ -14,7 +14,7 @@ const Scene = dynamic(() => import('@/components/map/Scene'), {
           WAKTU
         </h1>
         <p className="font-body text-xl text-deep-brown">
-          Dakar's Art & Culture Map
+          Dakar&apos;s Art & Culture Map
         </p>
         <p className="font-editorial text-lg text-faded-indigo mt-2 italic">
           Loading experience...
