@@ -1,9 +1,8 @@
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-  // Transpile React Three packages to use our React version
-  // This prevents duplicate React instances without breaking Server Components
-  transpilePackages: ['three', '@react-three/fiber', '@react-three/drei'],
+  // Only transpile 'three' - R3F v9 doesn't need transpilation with React 19
+  transpilePackages: ['three'],
 
   webpack: (config) => {
     // Handle GLSL/shader files
