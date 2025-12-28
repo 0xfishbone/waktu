@@ -1,0 +1,115 @@
+[
+  {
+    "id": "raw-material-company",
+    "slug": "raw-material-company",
+    "name": "RAW Material Company",
+    "category": "cultural-center",
+    "neighborhood": "Zone B",
+    "address": "Sicap Liberté 1, Villa 5012",
+    "coordinates": {
+      "lat": 14.7167,
+      "lng": -17.4677
+    },
+    "tagline": "Center for art, knowledge and society",
+    "description": "The most serious contemporary art discourse in Dakar happens here. Expect challenging exhibitions, critical programming, and the occasional mind-expanding talk. Founded by Koyo Kouoh, RAW has become a must-visit for anyone serious about African contemporary art.",
+    "heroImage": "/images/places/raw-material-company/hero.jpg",
+    "gallery": [
+      "/images/places/raw-material-company/gallery-1.jpg",
+      "/images/places/raw-material-company/gallery-2.jpg"
+    ],
+    "hours": "Tue–Sat, 10h–18h",
+    "entry": "Free",
+    "website": "https://rawmaterialcompany.org",
+    "phone": "+221 33 XXX XXXX",
+    "featured": true,
+    "tags": ["contemporary", "exhibitions", "talks", "residency"]
+  },
+  {
+    "id": "galerie-cecile-fakhoury",
+    "slug": "galerie-cecile-fakhoury",
+    "name": "Galerie Cécile Fakhoury",
+    "category": "gallery",
+    "neighborhood": "Plateau",
+    "address": "Rue AA 37, Angle Rue Carnot",
+    "coordinates": {
+      "lat": 14.6937,
+      "lng": -17.4441
+    },
+    "tagline": "Contemporary African art at its finest",
+    "description": "One of West Africa's leading contemporary art galleries. Cécile Fakhoury's Dakar space showcases established and emerging artists from the continent and diaspora, with a sharp curatorial eye and impeccable presentation.",
+    "heroImage": "/images/places/galerie-cecile-fakhoury/hero.jpg",
+    "gallery": [],
+    "hours": "Mon–Fri, 9h–18h; Sat 10h–14h",
+    "entry": "Free",
+    "website": "https://cecilefakhoury.com",
+    "phone": "+221 33 821 48 70",
+    "featured": true,
+    "tags": ["contemporary", "exhibitions", "international"]
+  },
+  {
+    "id": "village-des-arts",
+    "slug": "village-des-arts",
+    "name": "Village des Arts",
+    "category": "studio",
+    "neighborhood": "Hann",
+    "address": "Route de l'Aéroport",
+    "coordinates": {
+      "lat": 14.7394,
+      "lng": -17.4386
+    },
+    "tagline": "Dakar's creative heart",
+    "description": "A collective of over 50 artist studios and workshops in a vibrant, graffiti-covered compound. Come here to see artists at work, buy directly from studios, and feel the pulse of Dakar's creative community. Weekends are best.",
+    "heroImage": "/images/places/village-des-arts/hero.jpg",
+    "gallery": [],
+    "hours": "Daily, 10h–19h (artists vary)",
+    "entry": "Free",
+    "website": "",
+    "phone": "",
+    "featured": true,
+    "tags": ["studios", "painters", "sculptors", "community"]
+  },
+  {
+    "id": "musee-theodore-monod",
+    "slug": "musee-theodore-monod",
+    "name": "Musée Théodore Monod / IFAN",
+    "category": "museum",
+    "neighborhood": "Plateau",
+    "address": "Place Soweto",
+    "coordinates": {
+      "lat": 14.6743,
+      "lng": -17.4422
+    },
+    "tagline": "West African heritage and art",
+    "description": "Senegal's premier museum of African art and culture. The IFAN Museum houses an extraordinary collection of masks, sculptures, textiles, and ethnographic objects from across West Africa. Essential for understanding the region's artistic traditions.",
+    "heroImage": "/images/places/musee-theodore-monod/hero.jpg",
+    "gallery": [],
+    "hours": "Tue–Sun, 9h–18h",
+    "entry": "2000 CFA (students 1000 CFA)",
+    "website": "http://www.ifan.ucad.sn",
+    "phone": "+221 33 823 92 3",
+    "featured": true,
+    "tags": ["traditional", "masks", "heritage", "ethnography"]
+  },
+  {
+    "id": "ker-thiossane",
+    "slug": "ker-thiossane",
+    "name": "Kër Thiossane",
+    "category": "cultural-center",
+    "neighborhood": "Sicap Liberté",
+    "address": "Villa 772, Sicap Liberté 1",
+    "coordinates": {
+      "lat": 14.7153,
+      "lng": -17.4655
+    },
+    "tagline": "Digital art, media innovation, future cultures",
+    "description": "Dakar's hub for digital art, new media, and tech-culture experimentation. Kër Thiossane has been pushing boundaries since the early 2000s with a mix of exhibitions, workshops, residencies, and events exploring the intersection of art, technology, and African futures.",
+    "heroImage": "/images/places/ker-thiossane/hero.jpg",
+    "gallery": [],
+    "hours": "Mon–Fri, 10h–18h",
+    "entry": "Free",
+    "website": "http://www.ker-thiossane.org",
+    "phone": "+221 33 827 23 69",
+    "featured": false,
+    "tags": ["digital", "media", "technology", "innovation"]
+  }
+]
