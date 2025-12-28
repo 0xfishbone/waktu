@@ -1,3 +1,5 @@
+'use client'
+
 import dynamic from 'next/dynamic'
 import Logo from '@/components/ui/Logo'
 import FilterButtons from '@/components/ui/FilterButtons'
