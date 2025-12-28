@@ -3,11 +3,12 @@ import type { NextConfig } from 'next'
 const nextConfig: NextConfig = {
   webpack: (config) => {
     // Ensure single React instance for React Three Fiber
-    // This prevents "Cannot read properties of undefined (reading 'ReactCurrentBatchConfig')" error
+    // Use path.dirname to get the directory, allowing subpath imports like react/jsx-runtime
+    const path = require('path')
     config.resolve.alias = {
       ...config.resolve.alias,
-      'react': require.resolve('react'),
-      'react-dom': require.resolve('react-dom'),
+      'react': path.dirname(require.resolve('react/package.json')),
+      'react-dom': path.dirname(require.resolve('react-dom/package.json')),
     }
 
     // Handle GLSL/shader files
