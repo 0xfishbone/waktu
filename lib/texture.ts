@@ -19,11 +19,22 @@ async function fetchTile(
 ): Promise<HTMLImageElement> {
   const url = `https://api.maptiler.com/maps/${style}/${z}/${x}/${y}.png?key=${MAPTILER_API_KEY}`
 
+  console.log(`Fetching ${style} tile: ${z}/${x}/${y}`)
+
   return new Promise((resolve, reject) => {
     const img = new Image()
     img.crossOrigin = 'anonymous'
-    img.onload = () => resolve(img)
-    img.onerror = reject
+
+    img.onload = () => {
+      console.log(`✓ Loaded ${style} tile: ${z}/${x}/${y} (${img.width}x${img.height})`)
+      resolve(img)
+    }
+
+    img.onerror = (error) => {
+      console.error(`✗ Failed ${style} tile: ${z}/${x}/${y}`, error)
+      reject(new Error(`Failed to load ${style} tile ${x},${y},${z}`))
+    }
+
     img.src = url
   })
 }
@@ -46,7 +57,7 @@ async function stitchTiles(
   const canvasWidth = xTiles * tileSize
   const canvasHeight = yTiles * tileSize
 
-  console.log(`Stitching ${tiles.length} tiles (${xTiles}x${yTiles}) at zoom ${zoom}`)
+  console.log(`Stitching ${tiles.length} ${style} tiles (${xTiles}x${yTiles}) at zoom ${zoom}`)
 
   // Create canvas
   const canvas = document.createElement('canvas')
@@ -63,18 +74,25 @@ async function stitchTiles(
   const minY = Math.min(...tiles.map((t) => t.y))
 
   // Fetch and draw all tiles
-  await Promise.all(
+  const results = await Promise.allSettled(
     tiles.map(async (tile) => {
-      try {
-        const img = await fetchTile(tile.x, tile.y, tile.z, style)
-        const canvasX = (tile.x - minX) * tileSize
-        const canvasY = (tile.y - minY) * tileSize
-        ctx.drawImage(img, canvasX, canvasY, tileSize, tileSize)
-      } catch (error) {
-        console.error(`Failed to fetch tile ${tile.x},${tile.y},${tile.z}:`, error)
-      }
+      const img = await fetchTile(tile.x, tile.y, tile.z, style)
+      const canvasX = (tile.x - minX) * tileSize
+      const canvasY = (tile.y - minY) * tileSize
+      ctx.drawImage(img, canvasX, canvasY, tileSize, tileSize)
+      return { x: tile.x, y: tile.y, success: true }
     })
   )
+
+  // Count successes and failures
+  const successful = results.filter((r) => r.status === 'fulfilled').length
+  const failed = results.filter((r) => r.status === 'rejected').length
+
+  console.log(`${style} tiles: ${successful} loaded, ${failed} failed`)
+
+  if (successful === 0) {
+    throw new Error(`All ${style} tiles failed to load`)
+  }
 
   return canvas
 }

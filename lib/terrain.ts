@@ -19,11 +19,23 @@ async function fetchTerrainTile(
 ): Promise<HTMLImageElement> {
   const url = `https://api.maptiler.com/tiles/terrain-rgb-v2/${z}/${x}/${y}?key=${MAPTILER_API_KEY}`
 
+  console.log(`Fetching terrain tile: ${z}/${x}/${y}`)
+
   return new Promise((resolve, reject) => {
     const img = new Image()
     img.crossOrigin = 'anonymous'
-    img.onload = () => resolve(img)
-    img.onerror = reject
+
+    img.onload = () => {
+      console.log(`✓ Loaded terrain tile: ${z}/${x}/${y} (${img.width}x${img.height})`)
+      resolve(img)
+    }
+
+    img.onerror = (error) => {
+      console.error(`✗ Failed terrain tile: ${z}/${x}/${y}`, error)
+      console.error(`  URL: ${url}`)
+      reject(new Error(`Failed to load terrain tile ${x},${y},${z}`))
+    }
+
     img.src = url
   })
 }
@@ -70,21 +82,28 @@ async function getElevationData(
   const minX = Math.min(...tiles.map((t) => t.x))
   const minY = Math.min(...tiles.map((t) => t.y))
 
-  console.log(`Fetching terrain data: ${tiles.length} tiles`)
+  console.log(`Fetching terrain data: ${tiles.length} tiles for zoom ${zoom}`)
 
   // Fetch and draw all terrain tiles
-  await Promise.all(
+  const results = await Promise.allSettled(
     tiles.map(async (tile) => {
-      try {
-        const img = await fetchTerrainTile(tile.x, tile.y, tile.z)
-        const canvasX = (tile.x - minX) * tileSize
-        const canvasY = (tile.y - minY) * tileSize
-        ctx.drawImage(img, canvasX, canvasY, tileSize, tileSize)
-      } catch (error) {
-        console.error(`Failed to fetch terrain tile ${tile.x},${tile.y}:`, error)
-      }
+      const img = await fetchTerrainTile(tile.x, tile.y, tile.z)
+      const canvasX = (tile.x - minX) * tileSize
+      const canvasY = (tile.y - minY) * tileSize
+      ctx.drawImage(img, canvasX, canvasY, tileSize, tileSize)
+      return { x: tile.x, y: tile.y, success: true }
     })
   )
+
+  // Count successes and failures
+  const successful = results.filter((r) => r.status === 'fulfilled').length
+  const failed = results.filter((r) => r.status === 'rejected').length
+
+  console.log(`Terrain tiles: ${successful} loaded, ${failed} failed`)
+
+  if (successful === 0) {
+    throw new Error('All terrain tiles failed to load')
+  }
 
   // Sample elevation data at resolution intervals
   const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
