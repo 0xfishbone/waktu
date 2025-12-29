@@ -9,9 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@react-three/drei": "^10.7.7",
-    "@react-three/fiber": "^9.4.2",
-    "gsap": "^3.12.5",
     "howler": "^2.2.4",
     "lenis": "^1.0.42",
     "mapbox-gl": "^3.1.0",
@@ -19,7 +16,6 @@
     "next": "^15.1.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "three": "^0.182.0",
     "zustand": "^4.5.0"
   },
   "devDependencies": {

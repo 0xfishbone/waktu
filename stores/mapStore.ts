@@ -1,28 +1,20 @@
-import { create } from 'zustand'
-import type { Place } from '@/data/types'
+import { create } from 'zustand';
+import { ArtSpace } from '@/data/places';
 
-interface MapState {
-  selectedPlace: Place | null
-  hoveredPlace: Place | null
-  filterCategory: string | null
-  isTransitioning: boolean
-  isMuted: boolean
-  setSelectedPlace: (place: Place | null) => void
-  setHoveredPlace: (place: Place | null) => void
-  setFilterCategory: (category: string | null) => void
-  setIsTransitioning: (transitioning: boolean) => void
-  toggleMute: () => void
+interface MapStore {
+  selectedPlace: ArtSpace | null;
+  hoveredPlace: ArtSpace | null;
+  filterCategory: string | null;
+  setSelectedPlace: (place: ArtSpace | null) => void;
+  setHoveredPlace: (place: ArtSpace | null) => void;
+  setFilterCategory: (category: string | null) => void;
 }
 
-export const useMapStore = create<MapState>((set) => ({
+export const useMapStore = create<MapStore>((set) => ({
   selectedPlace: null,
   hoveredPlace: null,
   filterCategory: null,
-  isTransitioning: false,
-  isMuted: false,
   setSelectedPlace: (place) => set({ selectedPlace: place }),
   setHoveredPlace: (place) => set({ hoveredPlace: place }),
   setFilterCategory: (category) => set({ filterCategory: category }),
-  setIsTransitioning: (transitioning) => set({ isTransitioning: transitioning }),
-  toggleMute: () => set((state) => ({ isMuted: !state.isMuted })),
-}))
+}));
