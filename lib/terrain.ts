@@ -1,5 +1,5 @@
 /**
- * MapTiler terrain-rgb elevation data fetching and terrain mesh generation
+ * MapTiler terrain-rgb-v2 elevation data fetching and terrain mesh generation
  * Creates 3D displaced geometry based on real Dakar elevation
  */
 
@@ -9,7 +9,7 @@ import { getTilesForBounds, DAKAR_BOUNDS, type Bounds } from './coordinates'
 const MAPTILER_API_KEY = process.env.NEXT_PUBLIC_MAPTILER_API_KEY
 
 /**
- * Fetch a MapTiler terrain-rgb tile
+ * Fetch a MapTiler terrain-rgb-v2 tile (webp format)
  * Returns raw image data where RGB values encode elevation
  */
 async function fetchTerrainTile(
@@ -17,7 +17,7 @@ async function fetchTerrainTile(
   y: number,
   z: number
 ): Promise<HTMLImageElement> {
-  const url = `https://api.maptiler.com/tiles/terrain-rgb/${z}/${x}/${y}.png?key=${MAPTILER_API_KEY}`
+  const url = `https://api.maptiler.com/tiles/terrain-rgb-v2/${z}/${x}/${y}?key=${MAPTILER_API_KEY}`
 
   return new Promise((resolve, reject) => {
     const img = new Image()
